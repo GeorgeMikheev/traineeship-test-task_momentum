@@ -38,8 +38,6 @@ class WeatherBlock extends WeatherAPI {
        try {
             const weatherData = await this.getWeaterData(lat, lon);
 
-            console.log(weatherData)
-
             this.city.textContent = weatherData.data[0].city_name;
             this.temperature.textContent = `${Math.round(weatherData.data[0].temp)}°C`;
             this.description.textContent = weatherData.data[0].weather.description;
