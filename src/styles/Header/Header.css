@@ -1,0 +1,8 @@
+@import url('./WeatherBlock/WeaterBlock.css');
+
+.header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 3vh 2vw;
+}

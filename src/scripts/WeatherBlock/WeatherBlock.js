@@ -20,12 +20,18 @@ class WeatherBlock extends WeatherAPI {
 
     getGeolocationData() {
         navigator.geolocation.getCurrentPosition(
-            result => this.setWeatheData(result.coords.latitude, result.coords.longitude),
-            error => {
-                console.log(error);
-                this.setWeatheData('45.0328', '38.9769');
-            }
-        )
+            result => {
+                const geolocationData = {
+                    lat: result.coords.latitude,
+                    lon: result.coords.longitude,
+                };
+
+                localStorage.setItem('geolocationData', JSON.stringify(geolocationData));
+                const localData = JSON.parse(localStorage.getItem('geolocationData'));
+                this.setWeatheData(localData.lat, localData.lon);
+            },
+            () => this.setWeatheData('45.0328', '38.9769')
+        );
     }
 
     async setWeatheData(lat, lon) {
