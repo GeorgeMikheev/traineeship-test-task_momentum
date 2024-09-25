@@ -1,4 +1,6 @@
+@import url('./variables.css');
 @import url('./Header/Header.css');
+@import url('./MainContent/Main.css');
 
 * {
     margin: 0;

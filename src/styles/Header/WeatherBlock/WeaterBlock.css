@@ -2,8 +2,8 @@
     position: relative;
     padding: 10px;
     width: 130px;
-    background-color: #00000010;
-    border-radius: 15px;
+    background-color: var(--widgets-bg-color);
+    border-radius: var(--widgets-border-radius);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,6 +15,7 @@
 .weather-block__temperature,
 .weather-block__description {
     z-index: 1;
+    color: var(--widgets-text-color);
 }
 
 .weather-block__title {

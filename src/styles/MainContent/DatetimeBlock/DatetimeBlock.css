@@ -1,0 +1,19 @@
+.datetime-block {
+    background-color: var(--widgets-bg-color);
+    padding: 20px;
+    border-radius: var(--widgets-border-radius);
+}
+
+.datetime-block__time,
+.datetime-block__date {
+    color: var(--widgets-text-color);
+}
+
+.datetime-block__time {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.datetime-block__date {
+    font-size: 30px;
+}

@@ -1,0 +1,13 @@
+@import url(./DatetimeBlock/DatetimeBlock.css);
+
+.main-content {
+    height: 60vh;
+}
+
+.main-content,
+.datetime-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
