@@ -1,4 +1,5 @@
-@import url(./DatetimeBlock/DatetimeBlock.css);
+@import url('./DatetimeBlock/DatetimeBlock.css');
+@import url('./SliderBlock/SliderBlock.css');
 
 .main-content {
     height: 60vh;

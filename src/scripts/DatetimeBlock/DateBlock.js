@@ -1,5 +1,8 @@
-class DatetimeBlock {
-    constructor(time, date) {
+import SliderBlock from "../SliderBlock/SliderBlock";
+
+class DatetimeBlock extends SliderBlock {
+    constructor(time, date, image) {
+        super(image);
         this.time = time;
         this.date = date;
 
@@ -26,6 +29,7 @@ class DatetimeBlock {
         this.time.textContent = `${hours}:${minutes}:${seconds}`;
         this.date.textContent = `${day} ${month}, ${weekDay}`;
 
+        this.setImage(hours);
         setInterval(() => this.createCurrentDatetime(), 1000);
     }
 }

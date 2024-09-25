@@ -10,6 +10,7 @@ const weatherBlockIcon = document.querySelector('.weather-block__icon');
 const weatherBlockError = document.querySelector('.weather-block__error');
 const time = document.querySelector('.datetime-block__time');
 const date = document.querySelector('.datetime-block__date');
+const slider = document.querySelector('.slider');
 
 const weatherBlock = new WeatherBlock(
     weatherApiKey,
@@ -20,8 +21,7 @@ const weatherBlock = new WeatherBlock(
     weatherBlockError
 );
 
-const datetimeBlock = new DatetimeBlock(time, date);
+const datetimeBlock = new DatetimeBlock(time, date, slider);
 
 weatherBlock.getGeolocationData();
-
 datetimeBlock.createCurrentDatetime();

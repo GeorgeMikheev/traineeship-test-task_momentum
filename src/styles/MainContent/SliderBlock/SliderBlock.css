@@ -1,0 +1,9 @@
+.slider {
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    width: 99vw;
+    height: 97vh;
+    z-index: -1;
+    border-radius: var(--widgets-border-radius);
+}
