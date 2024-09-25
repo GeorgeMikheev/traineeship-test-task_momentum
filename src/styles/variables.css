@@ -1,5 +1,6 @@
 :root {
-    --widgets-bg-color: #00000040;
-    --widgets-border-radius: 15px;
-    --widgets-text-color: #fbfbfb;
+    --body-bg-color: #353535;
+	--widgets-bg-color: #00000085;
+	--widgets-border-radius: 15px;
+	--widgets-text-color: #f1f1f1dd;
 }

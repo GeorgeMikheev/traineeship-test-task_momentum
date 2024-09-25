@@ -1,0 +1,32 @@
+.weather-block {
+    position: relative;
+    gap: 1.5vh;
+    max-width: 165px;
+}
+
+.weather-block__title,
+.weather-block__temperature,
+.weather-block__description {
+    z-index: 1;
+}
+
+.weather-block__title {
+    font-size: 2rem;
+}
+
+.weather-block__temperature {
+    font-size: 3rem;
+}
+
+.weather-block__description {
+    font-size: 1.5rem;
+}
+
+.weather-block__icon {
+    position: absolute;
+    z-index: 0;
+    top: 37px;
+    width: 100px;
+    height: 100px;
+    filter: brightness(50%);
+}

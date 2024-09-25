@@ -1,19 +1,14 @@
 .datetime-block {
-    background-color: var(--widgets-bg-color);
-    padding: 20px;
-    border-radius: var(--widgets-border-radius);
-}
-
-.datetime-block__time,
-.datetime-block__date {
-    color: var(--widgets-text-color);
+    height: 15vh;
+    width: 20vw;
+    min-width: 250px;
 }
 
 .datetime-block__time {
-    font-size: 50px;
-    font-weight: 700;
+	font-weight: 700;
+	font-size: 4rem;
 }
 
 .datetime-block__date {
-    font-size: 30px;
+	font-size: 1.5rem;
 }

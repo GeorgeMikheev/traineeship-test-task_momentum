@@ -1,9 +1,5 @@
 .slider {
-    position: absolute;
-    background-position: center;
-    background-size: cover;
-    width: 99vw;
-    height: 97vh;
-    z-index: -1;
-    border-radius: var(--widgets-border-radius);
+	background-size: 105% 105%;
+	background-position: center;
+	border-radius: var(--widgets-border-radius);
 }
