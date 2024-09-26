@@ -1,0 +1,71 @@
+.task-list,
+.widget-form,
+.active,
+.task-list__item {
+	display: flex;
+}
+
+.clouse-button {
+	align-self: flex-end;
+	margin-inline-end: 5px;
+}
+
+.task-list {
+	height: 72%;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.widget-form,
+.delete-all-task-button {
+	border: 2px solid var(--widgets-text-color);
+	border-radius: var(--widgets-border-radius);
+}
+
+.widget-button,
+.widget-form__input {
+	cursor: pointer;
+	background-color: transparent;
+	color: var(--widgets-text-color);
+	padding: 10px;
+}
+
+.widget-form__button {
+	border-left: 2px solid var(--widgets-text-color);
+}
+
+.clouse-state {
+	width: 250px;
+	height: 189px;
+	cursor: pointer;
+}
+
+.open-state {
+	width: 70%;
+	justify-content: space-between;
+}
+
+.inactive {
+	display: none;
+}
+
+.task-list__item {
+    border-block-end: 1px solid var(--widgets-text-color);
+    width: 100%;
+    gap: 15px;
+}
+
+.task-list__button {
+    border-inline-start: 1px solid var(--widgets-text-color);
+    padding: 15px;
+    width: 18px;
+    height: 18px;
+    background-image: url('../../../images/delete-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.task-list__text {
+    text-wrap: wrap;
+    width: 150px;
+} 

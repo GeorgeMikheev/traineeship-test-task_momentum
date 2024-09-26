@@ -1,6 +1,7 @@
 @import url("./DatetimeBlock/DatetimeBlock.css");
 @import url("./SliderBlock/SliderBlock.css");
 @import url("./WeatherBlock/WeatherBlock.css");
+@import url('./TaskBlock/TaskBlock.css');
 
 .main-content {
 	height: 100%;
@@ -16,16 +17,23 @@
     justify-self: end;
 }
 
+.task-block {
+	grid-column: 1 / 3;
+	grid-row: 1 / 4;
+	justify-self: start;
+}
+
 .datetime-block {
 	grid-column: 2 / 4;
 	grid-row: 3 / 4;
     justify-self: center;
+	align-self: center;
 }
 
 .widget {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	background-color: var(--widgets-bg-color);
 	border-radius: var(--widgets-border-radius);

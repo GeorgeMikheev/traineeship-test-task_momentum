@@ -18,6 +18,28 @@
 				<p class="datetime-block__time"></p>
 				<p class="datetime-block__date"></p>
 			</div>
+			<div class="task-block widget clouse-state">
+				<button class="clouse-button inactive">✖</button>
+				<form class="widget-form inactive">
+					<input placeholder="Новая задача" type="text" class="widget-form__input">
+					<button type="submit" class="widget-form__button widget-button">
+						Добавить задачу
+					</button>
+				</form>
+				<ol class="task-list">
+					<p class="replacement active">На данных момент нет активных задач</p>
+				</ol>
+				<button type="button" class="delete-all-task-button widget-button inactive">
+					Удалить выполненные задачи
+				</button>
+			</div>
 		</div>
+		<template id="task-template">
+			<li class="task-list__item">
+				<input class="task-list__checkbox" type="checkbox" />
+				<p class="task-list__text"></p>
+				<button type="button" class="task-list__button"></button>
+			</li>
+		</template>
 	</body>
 </html>

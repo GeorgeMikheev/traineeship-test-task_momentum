@@ -1,4 +1,4 @@
-import WeatherAPI from "./WeatherAPI";
+import WeatherAPI from "../Api/WeatherAPI";
 
 class WeatherBlock extends WeatherAPI {
 	constructor(key, city, temperature, description, icon, error) {
