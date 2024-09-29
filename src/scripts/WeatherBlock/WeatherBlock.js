@@ -1,14 +1,15 @@
+import { findElement } from "../../utils/utils";
 import WeatherAPI from "../Api/WeatherAPI";
 
 class WeatherBlock extends WeatherAPI {
 	constructor(key, city, temperature, description, icon, error) {
 		super(key);
 
-		this.city = city;
-		this.temperature = temperature;
-		this.description = description;
-		this.icon = icon;
-		this.error = error;
+		this.city = findElement(`.${city}`);
+		this.temperature = findElement(`.${temperature}`);
+		this.description = findElement(`.${description}`);
+		this.icon = findElement(`.${icon}`);
+		this.error = findElement(`.${error}`);
 	}
 
 	getGeolocationData() {

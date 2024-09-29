@@ -1,105 +1,100 @@
+import { findElement, toggleClassList } from "../../utils/utils";
 import Task from "./Task";
+
 
 class TaskBlock {
 	constructor(
-		taskBlockElement,
-		clouseButton,
+		taskBlock,
+		collapseButton,
 		form,
-		list,
-		template,
+        formInput,
+        formButton,
+		taskList,
 		replacement,
-        taskListText
+		deleteButton,
+		template
+		// listItem,
+		// listItemCheckbox,
+		// listItemContent,
+		// listItemDeleteButton
 	) {
-		this.taskBlockElement = taskBlockElement;
-		this.clouseButton = clouseButton;
-		this.form = form;
-		this.list = list;
-		this.template = template;
-		this.replacement = replacement;
-        this.taskListText = taskListText;
-		this.tasks = localStorage.getItem("tasks")
-			? JSON.parse(localStorage.getItem("tasks"))
-			: [];
+		this.taskBlock = findElement(`.${taskBlock}`);
+		this.collapseButton = findElement(`.${collapseButton}`);
+		this.form = findElement(`.${form}`);
+        this.formInput = findElement(`.${formInput}`);
+        this.formButton = findElement(`.${formButton}`);
+		this.taskList = findElement(`.${taskList}`);
+		this.replacement = findElement(`.${replacement}`);
+		this.deleteButton = findElement(`.${deleteButton}`);
+		this.template = findElement(`#${template}`);
 
-		this.formInput = this.form.querySelector(".widget-form__input");
-        
+		this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+		this.taskBlock.addEventListener("dblclick", () => this.open());
+        this.form.addEventListener('submit', evt => {
+            evt.preventDefault();
+            this.addTask();
+        })
 	}
 
-	checkActive() {
-		if (this.tasks.length > 0) {
-			this.replacement.classList.add("inactive");
-			this.replacement.classList.remove("active");
-		} else {
-			this.replacement.classList.remove("inactive");
-			this.replacement.classList.add("active");
-		}
+	clouse() {
+		toggleClassList([this.taskBlock], "clouse-state", "open-state");
+		toggleClassList(
+			[this.collapseButton, this.form, this.deleteButton],
+			"inactive",
+			"active"
+		);
+
+		this.taskBlock.addEventListener("dblclick", () => this.open());
+		this.collapseButton.removeEventListener("click", () => this.clouse());
 	}
 
-	addTask() {
-		const task = new Task(this.tasks.length, false, this.formInput.value);
+	open() {
+		toggleClassList([this.taskBlock], "open-state", "clouse-state");
+		toggleClassList(
+			[this.collapseButton, this.form, this.deleteButton],
+			"active",
+			"inactive"
+		);
 
-		this.createTask(task);
-
-		this.tasks.push(task);
-
-		localStorage.setItem("tasks", JSON.stringify(this.tasks));
+		this.collapseButton.addEventListener("click", () => this.clouse());
+		this.collapseButton.removeEventListener("dbclick", () => this.open());
 	}
 
-	createTask(task) {
-		const listItem = this.template.content.cloneNode(true);
-		const listItemText = listItem.querySelector(".task-list__text");
-        const deleteButton = listItem.querySelector('.task-list__button');
-
-		listItemText.textContent = task.text
-
-		this.formInput.value = "";
-
-		this.list.append(listItem);
-
-        deleteButton.addEventListener('click', this.deleteTask(task));
+	checkTasks() {
+		this.tasks.length > 0
+			? toggleClassList([this.replacement], "inactive", "active")
+			: toggleClassList([this.replacement], "active", "inactive");
 	}
 
-    setTasks() {
-        this.tasks.forEach(task => this.createTask(task));
-        this.checkActive();
+    save() {
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
 
-	clouseTaskBlock() {
-		this.taskBlockElement.classList.add("clouse-state");
-		this.taskBlockElement.classList.remove("open-state");
-		this.clouseButton.classList.add("inactive");
-		this.clouseButton.classList.remove("active");
-		this.form.classList.add("inactive");
-		this.form.classList.remove("active");
-		this.deleteAllButton.classList.add("inactive");
-		this.deleteAllButton.classList.remove("active");
+    createTask(task) {
+        const listItem = this.template.content.cloneNode(true);
+		const listItemContent = listItem.querySelector(".task-list__text");
+        const deleteButton = listItem.querySelector('.task-list__button');
 
-		this.taskBlockElement.addEventListener("dbclick", () =>
-			this.openTaskBlock()
-		);
-		this.clouseButton.removeEventListener("click", () =>
-			this.clouseTaskBlock()
-		);
-	}
+        listItemContent.textContent = task.content;
+        
+        this.taskList.append(listItem);
 
-	openTaskBlock() {
-		this.taskBlockElement.classList.remove("clouse-state");
-		this.taskBlockElement.classList.add("open-state");
-		this.clouseButton.classList.remove("inactive");
-		this.clouseButton.classList.add("active");
-		this.form.classList.remove("inactive");
-		this.form.classList.add("active");
-		this.deleteAllButton.classList.remove("inactive");
-		this.deleteAllButton.classList.add("active");
+        this.checkTasks();
 
-		this.clouseButton.addEventListener("click", () => this.clouseTaskBlock());
-		this.clouseButton.removeEventListener("dbclick", () =>
-			this.openTaskBlock()
-		);
-	}
+        this.save();
+    }
 
-    deleteTask(task) {
-        console.log(task)
+    addTask() {
+        const task = new Task(this.tasks.length, this.formInput.value);
+
+        this.createTask(task);
+        this.tasks.push(task);
+        this.formInput.value = '';
+    }
+
+    setTask() {
+        this.tasks.forEach(task => this.createTask(task));
     }
 }
 

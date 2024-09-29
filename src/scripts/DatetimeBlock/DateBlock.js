@@ -1,10 +1,11 @@
+import { findElement } from "../../utils/utils";
 import SliderBlock from "../SliderBlock/SliderBlock";
 
 class DatetimeBlock extends SliderBlock {
 	constructor(time, date, image) {
 		super(image);
-		this.time = time;
-		this.date = date;
+		this.time = findElement(`.${time}`);
+		this.date = findElement(`.${date}`);
 
 		this.monthNamesGenitive = [
 			"января",

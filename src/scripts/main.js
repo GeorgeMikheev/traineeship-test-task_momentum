@@ -4,54 +4,33 @@ import WeatherBlock from "./WeatherBlock/WeatherBlock";
 
 const weatherApiKey = process.env.WTHR_API_KEY;
 
-const weatherBlockTitle = document.querySelector(".weather-block__title");
-const weatherBlockTemp = document.querySelector(".weather-block__temperature");
-const weatherBlockDescription = document.querySelector(
-	".weather-block__description"
-);
-const weatherBlockIcon = document.querySelector(".weather-block__icon");
-const weatherBlockError = document.querySelector(".weather-block__error");
-const time = document.querySelector(".datetime-block__time");
-const date = document.querySelector(".datetime-block__date");
-const slider = document.querySelector(".slider");
-const taskBlockElement = document.querySelector(".task-block");
-const clouseButton = document.querySelector(".clouse-button");
-const taskBlockForm = document.querySelector(".widget-form");
-const taskList = document.querySelector(".task-list");
-const replacement = document.querySelector(".replacement");
-const deleteAllButton = document.querySelector(".delete-all-task-button");
-const taskTemplate = document.querySelector("#task-template");
-const taskListText = document.querySelector(".task-list__text");
-const deleteButton = document.querySelector('.task-list__button');
-
 const weatherBlock = new WeatherBlock(
 	weatherApiKey,
-	weatherBlockTitle,
-	weatherBlockTemp,
-	weatherBlockDescription,
-	weatherBlockIcon,
-	weatherBlockError,
-	taskListText
+	"weather-block__title",
+	"weather-block__temperature",
+	"weather-block__description",
+	"weather-block__icon",
+	"weather-block__error"
 );
 
-const datetimeBlock = new DatetimeBlock(time, date, slider);
+const datetimeBlock = new DatetimeBlock(
+	"datetime-block__time",
+	"datetime-block__date",
+	"slider"
+);
 
 const taskBlock = new TaskBlock(
-	taskBlockElement,
-	clouseButton,
-	taskBlockForm,
-	taskList,
-	taskTemplate,
-	replacement
+	'task-block',
+	'clouse-button',
+	'widget-form',
+	'widget-form__input',
+	'widget-form__button',
+	'task-list',
+	'replacement',
+	'delete-all-task-button',
+	'task-template'
 );
 
-taskBlock.setTasks();
 weatherBlock.getGeolocationData();
 datetimeBlock.createCurrentDatetime();
-
-taskBlockElement.addEventListener('dblclick', () => taskBlock.openTaskBlock());
-taskBlockForm.addEventListener('submit', evt => {
-	evt.preventDefault();
-	taskBlock.addTask();
-	taskBlock.checkActive();
-});
+taskBlock.setTask();

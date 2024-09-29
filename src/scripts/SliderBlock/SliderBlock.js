@@ -1,6 +1,8 @@
+import { findElement } from "../../utils/utils";
+
 class SliderBlock {
 	constructor(slider) {
-		this.slider = slider;
+		this.slider = findElement(`.${slider}`);
 	}
 
 	setImage(hours) {
