@@ -15,6 +15,7 @@
 
 .task-list {
 	height: 72%;
+	width: 90%;
 	margin-block: 10px;
 	overflow-y: auto;
 	overflow-x: hidden;
@@ -39,7 +40,7 @@
 }
 
 .widget-form {
-	max-width: 100%;
+	width: 85%;
 }
 
 .widget-form,
@@ -53,6 +54,7 @@
 }
 
 .widget-form__button {
+	width: 35%;
 	border-radius: var(--widgets-border-radius);
 }
 
@@ -65,6 +67,7 @@
 }
 
 .widget-form__input {
+	width: 65%;
 	border-right: 2px solid var(--widgets-text-color);
 }
 
@@ -83,6 +86,7 @@
 .replacement,
 .tooltip {
 	text-align: center;
+	justify-content: center;
 }
 
 .tooltip {
@@ -100,14 +104,14 @@
 
 .task-list__item {
 	border-block-end: 1px solid var(--widgets-text-color);
-	width: 100%;
+	justify-content: space-between;
 	align-items: center;
-	gap: 15px;
+	gap: 10px;
 }
 
 .task-list__text {
 	text-wrap: wrap;
-	width: 150px;
+	width: clamp(125px, 70%, 70%);
 }
 
 .task-list__checkbox {
@@ -153,15 +157,19 @@
 
 .widget-button:hover,
 .widget-button:focus-visible {
-	text-shadow: 2px 2px 1px var(--widgets-text-color);
+	font-weight: 800;
 }
 
 .task-list__checkbox:focus-visible {
 	border: 3px double var(--widgets-text-color);
 }
 
-.widget-button:active {
-	box-shadow: 0 0 10px var(--widgets-text-color) inset;
+.widget-form__button:active {
+	transform: rotateZ(1deg);
+}
+
+.delete-completed:active {
+	box-shadow: 0 0 15px var(--widgets-text-color) inset;
 }
 
 .clouse {

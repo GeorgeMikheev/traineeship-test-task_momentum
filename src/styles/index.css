@@ -11,6 +11,7 @@
 
 body {
 	background-color: var(--body-bg-color);
+	height: 100vh;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;

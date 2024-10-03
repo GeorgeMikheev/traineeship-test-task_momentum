@@ -1,40 +1,79 @@
+@media (height <= 400px) {
+	.body {
+		position: relative;
+	}
+
+	.main-content {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		align-items: start;
+		flex-wrap: wrap;
+		height: 100vh;
+	}
+
+	.slider {
+		position: fixed;
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0;
+		top: 0;
+		margin: 0;
+	}
+
+	.datetime-block {
+		height: auto;
+		margin: 1vw;
+	}
+
+	.weather-block,
+	.datetime-block {
+		width: 40vw;
+		align-self: start;
+	}
+
+	.task-block {
+		align-self: end;
+	}
+
+	.open-state {
+		width: 55vw;
+		height: 95vh;
+	}
+}
+
 @media (width <= 400px) {
-    .main-content {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5vh;
-    }
+	.main-content {
+		display: flex;
+		flex-direction: column;
+	}
 
-    .datetime-block {
-        height: auto;
-        
-    }
+	.slider {
+		background-size: cover;
+		position: fixed;
+		height: 100vh;
+		width: 100vw;
+		border-radius: 0;
+		top: 0;
+		margin: 0;
+	}
 
-    .weather-block,
-    .datetime-block {
-        height: 50vh;
-    }
+	.widget {
+		margin: 5vw;
+		width: 90vw;
+	}
 
-    .weather-block {
-        width: 30vw;
-    }
+	.widget-form {
+		flex-direction: column;
+	}
 
-    .datetime-block {
-        width: 60vw;
-    }
+	.widget-form__input,
+	.widget-form__button {
+		width: 100%;
+	}
 
-    .open-state {
-        height: 90vh;
-        width: 45vw;
-    }
-
-    .widget-form {
-        flex-direction: column;
-    }
-
-    .widget-form__input {
-        border-right: none;
-        border-bottom: 2px solid var(--widgets-text-color);
-    }
+	.widget-form__input {
+		border-right: none;
+		border-bottom: 2px solid var(--widgets-text-color);
+	}
 }

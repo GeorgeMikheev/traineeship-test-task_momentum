@@ -77,7 +77,6 @@ class TaskBlock {
 		this.tasks.length > 0
 			? toggleClassList([this.replacement], "inactive", "active")
 			: toggleClassList([this.replacement], "active", "inactive");
-		console.log(this.tasks);
 	}
 
 	save() {
