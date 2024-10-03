@@ -1,0 +1,40 @@
+@media (width <= 400px) {
+    .main-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5vh;
+    }
+
+    .datetime-block {
+        height: auto;
+        
+    }
+
+    .weather-block,
+    .datetime-block {
+        height: 50vh;
+    }
+
+    .weather-block {
+        width: 30vw;
+    }
+
+    .datetime-block {
+        width: 60vw;
+    }
+
+    .open-state {
+        height: 90vh;
+        width: 45vw;
+    }
+
+    .widget-form {
+        flex-direction: column;
+    }
+
+    .widget-form__input {
+        border-right: none;
+        border-bottom: 2px solid var(--widgets-text-color);
+    }
+}

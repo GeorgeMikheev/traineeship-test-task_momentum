@@ -1,46 +1,52 @@
 import { findElement, toggleClassList } from "../../utils/utils";
 import Task from "./Task";
 
-
 class TaskBlock {
 	constructor(
 		taskBlock,
 		collapseButton,
 		form,
-        formInput,
-        formButton,
+		formInput,
+		formButton,
 		taskList,
 		replacement,
 		deleteButton,
 		template
-		// listItem,
-		// listItemCheckbox,
-		// listItemContent,
-		// listItemDeleteButton
 	) {
 		this.taskBlock = findElement(`.${taskBlock}`);
 		this.collapseButton = findElement(`.${collapseButton}`);
 		this.form = findElement(`.${form}`);
-        this.formInput = findElement(`.${formInput}`);
-        this.formButton = findElement(`.${formButton}`);
+		this.formInput = findElement(`.${formInput}`);
+		this.formButton = findElement(`.${formButton}`);
 		this.taskList = findElement(`.${taskList}`);
 		this.replacement = findElement(`.${replacement}`);
-		this.deleteButton = findElement(`.${deleteButton}`);
+		this.deleteCompleted = findElement(`.${deleteButton}`);
 		this.template = findElement(`#${template}`);
 
 		this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 		this.taskBlock.addEventListener("dblclick", () => this.open());
-        this.form.addEventListener('submit', evt => {
-            evt.preventDefault();
-            this.addTask();
-        })
+		this.form.addEventListener("submit", (evt) => {
+			evt.preventDefault();
+			this.addTask();
+		});
+
+		this.deleteCompleted.addEventListener("click", () =>
+			this.deleteCompletedTasks()
+		);
 	}
 
 	clouse() {
-		toggleClassList([this.taskBlock], "clouse-state", "open-state");
 		toggleClassList(
-			[this.collapseButton, this.form, this.deleteButton],
+			[this.collapseButton, this.form, this.deleteCompleted],
+			"clouse",
+			"open"
+		);
+
+		toggleClassList([this.taskBlock], "clouse-state", "open-state");
+
+		toggleClassList(
+			[this.collapseButton, this.form, this.deleteCompleted],
 			"inactive",
 			"active"
 		);
@@ -52,9 +58,15 @@ class TaskBlock {
 	open() {
 		toggleClassList([this.taskBlock], "open-state", "clouse-state");
 		toggleClassList(
-			[this.collapseButton, this.form, this.deleteButton],
+			[this.collapseButton, this.form, this.deleteCompleted],
 			"active",
 			"inactive"
+		);
+
+		toggleClassList(
+			[this.collapseButton, this.form, this.deleteCompleted],
+			"open",
+			"clouse"
 		);
 
 		this.collapseButton.addEventListener("click", () => this.clouse());
@@ -65,37 +77,73 @@ class TaskBlock {
 		this.tasks.length > 0
 			? toggleClassList([this.replacement], "inactive", "active")
 			: toggleClassList([this.replacement], "active", "inactive");
+		console.log(this.tasks);
 	}
 
-    save() {
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    }
+	save() {
+		localStorage.setItem("tasks", JSON.stringify(this.tasks));
+	}
 
-    createTask(task) {
-        const listItem = this.template.content.cloneNode(true);
+	createTask(task) {
+		const listItem = this.template.content.cloneNode(true);
 		const listItemContent = listItem.querySelector(".task-list__text");
-        const deleteButton = listItem.querySelector('.task-list__button');
+		const deleteTaskButton = listItem.querySelector(".task-list__button");
+		const checkbox = listItem.querySelector(".task-list__checkbox");
 
-        listItemContent.textContent = task.content;
-        
-        this.taskList.append(listItem);
+		listItemContent.textContent =
+			task.content[0].toUpperCase() + task.content.slice(1);
 
-        this.checkTasks();
+		task.isCompleted
+			? checkbox.setAttribute("checked", "")
+			: checkbox.removeAttribute("checked");
 
-        this.save();
-    }
+		this.taskList.append(listItem);
+		this.checkTasks();
 
-    addTask() {
-        const task = new Task(this.tasks.length, this.formInput.value);
+		deleteTaskButton.addEventListener("click", (evt) => {
+			this.deleteTask(task._id);
+			evt.target.closest(".task-list__item").remove();
+			this.checkTasks();
+		});
 
-        this.createTask(task);
-        this.tasks.push(task);
-        this.formInput.value = '';
-    }
+		checkbox.addEventListener("change", () =>
+			this.toggleTaskCompleted(task._id)
+		);
+	}
 
-    setTask() {
-        this.tasks.forEach(task => this.createTask(task));
-    }
+	addTask() {
+		if (this.formInput.value) {
+			const task = new Task(this.tasks.length, this.formInput.value);
+
+			this.tasks.push(task);
+			this.createTask(task);
+			this.save();
+			this.formInput.value = "";
+		}
+	}
+
+	setTask() {
+		this.tasks.forEach((task) => this.createTask(task));
+	}
+
+	deleteTask(taskID) {
+		this.tasks = this.tasks.filter((task) => task._id !== taskID);
+		this.save();
+	}
+
+	toggleTaskCompleted(taskID) {
+		const task = this.tasks.find((task) => task._id === taskID);
+		if (!task) return;
+		task.isCompleted ? (task.isCompleted = false) : (task.isCompleted = true);
+		this.save();
+	}
+
+	deleteCompletedTasks() {
+		this.tasks = this.tasks.filter((task) => !task.isCompleted);
+		this.save();
+		this.taskList.innerHTML = "";
+		this.setTask();
+	}
 }
 
 export default TaskBlock;

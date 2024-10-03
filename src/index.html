@@ -6,10 +6,11 @@
 		<title>momentum</title>
 	</head>
 	<body class="body">
-		<div class="main-content slider">
+		<div class="main-content">
+			<div class="slider"></div>
 			<div class="weather-block widget">
 				<p class="weather-block__error"></p>
-				<h2 class="weather-block__title"></h2>
+				<p class="weather-block__title"></p>
 				<p class="weather-block__temperature"></p>
 				<img src="" alt="Картинка" class="weather-block__icon" />
 				<p class="weather-block__description"></p>
@@ -21,7 +22,10 @@
 			<div class="task-block widget clouse-state">
 				<button class="clouse-button inactive">✖</button>
 				<form class="widget-form inactive">
-					<input placeholder="Новая задача" type="text" class="widget-form__input">
+					<input
+						placeholder="Новая задача"
+						type="text"
+						class="widget-form__input" />
 					<button type="submit" class="widget-form__button widget-button">
 						Добавить задачу
 					</button>
@@ -29,9 +33,12 @@
 				<ol class="task-list">
 					<p class="replacement active">На данных момент нет активных задач</p>
 				</ol>
-				<button type="button" class="delete-all-task-button widget-button inactive">
+				<button type="button" class="delete-completed widget-button inactive">
 					Удалить выполненные задачи
 				</button>
+				<p class="tooltip">
+					Щелкните дважды по этому блоку, что бы добавить нове задачи
+				</p>
 			</div>
 		</div>
 		<template id="task-template">

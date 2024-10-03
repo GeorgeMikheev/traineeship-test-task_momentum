@@ -1,20 +1,25 @@
 @import url("./DatetimeBlock/DatetimeBlock.css");
 @import url("./SliderBlock/SliderBlock.css");
 @import url("./WeatherBlock/WeatherBlock.css");
-@import url('./TaskBlock/TaskBlock.css');
+@import url("./TaskBlock/TaskBlock.css");
 
 .main-content {
-	height: 100%;
-	padding: 1.5vw;
-	box-shadow: 0 0 15px #000;
+	/* position: relative; */
+	height: 100vh;
+	padding: 0.5%;
 	display: grid;
 	grid-template: repeat(5, 1fr) / repeat(4, 1fr);
 }
 
+.weather-block,
+.task-block {
+	margin: 1vw;
+}
+
 .weather-block {
 	grid-column: 4 / 5;
-    grid-row: 1 / 2;
-    justify-self: end;
+	grid-row: 1 / 2;
+	justify-self: end;
 }
 
 .task-block {
@@ -26,7 +31,7 @@
 .datetime-block {
 	grid-column: 2 / 4;
 	grid-row: 3 / 4;
-    justify-self: center;
+	justify-self: center;
 	align-self: center;
 }
 

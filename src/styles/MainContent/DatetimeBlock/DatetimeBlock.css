@@ -1,7 +1,7 @@
 .datetime-block {
-    height: 15vh;
-    width: 20vw;
-    min-width: 250px;
+	height: 15vh;
+	width: 20vw;
+	min-width: 250px;
 }
 
 .datetime-block__time {

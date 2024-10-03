@@ -1,0 +1,30 @@
+@keyframes task-block-opening {
+	from {
+		opacity: 0;
+	}
+
+	25% {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes task-block-clousing {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes delete-button-hover {
+	to {
+		background-color: #00000089;
+		border-radius: 50%;
+	}
+}

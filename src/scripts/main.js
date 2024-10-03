@@ -20,15 +20,15 @@ const datetimeBlock = new DatetimeBlock(
 );
 
 const taskBlock = new TaskBlock(
-	'task-block',
-	'clouse-button',
-	'widget-form',
-	'widget-form__input',
-	'widget-form__button',
-	'task-list',
-	'replacement',
-	'delete-all-task-button',
-	'task-template'
+	"task-block",
+	"clouse-button",
+	"widget-form",
+	"widget-form__input",
+	"widget-form__button",
+	"task-list",
+	"replacement",
+	"delete-completed",
+	"task-template"
 );
 
 weatherBlock.getGeolocationData();

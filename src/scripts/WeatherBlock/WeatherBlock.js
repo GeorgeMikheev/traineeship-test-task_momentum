@@ -41,8 +41,10 @@ class WeatherBlock extends WeatherAPI {
 			)}°C`;
 			this.description.textContent = weatherData.data[0].weather.description;
 			this.icon.src = `https://cdn.weatherbit.io/static/img/icons/${weatherData.data[0].weather.icon}.png`;
+			this.icon.style.display = "block";
 		} catch (err) {
 			this.error.textContent = err;
+			this.icon.style.display = "none";
 		}
 	}
 }
