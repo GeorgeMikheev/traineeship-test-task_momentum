@@ -1,11 +1,14 @@
+import WeatherAPI from "./Api/WeatherAPI";
 import DatetimeBlock from "./DatetimeBlock/DateBlock";
 import TaskBlock from "./TaskBlock/TaskBlock";
 import WeatherBlock from "./WeatherBlock/WeatherBlock";
 
 const weatherApiKey = process.env.WTHR_API_KEY;
 
+const weatherAPI = new WeatherAPI(weatherApiKey);
+
 const weatherBlock = new WeatherBlock(
-	weatherApiKey,
+	weatherAPI,
 	"weather-block__title",
 	"weather-block__temperature",
 	"weather-block__description",
@@ -21,7 +24,7 @@ const datetimeBlock = new DatetimeBlock(
 
 const taskBlock = new TaskBlock(
 	"task-block",
-	"clouse-button",
+	"close-button",
 	"widget-form",
 	"widget-form__input",
 	"widget-form__button",

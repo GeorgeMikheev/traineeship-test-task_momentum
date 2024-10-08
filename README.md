@@ -2,6 +2,8 @@
 
 traineeship-test-task_momentum - это тестовое задание для стажировки в компании DIGITAL SECTOR. Для выполнения данной задачи необходимо реализовать веб-приложение momentum, аналог расширения. В приложении есть часы, дата, слайдер изображений, виджеты погоды, список задач.
 
+![](./assets/2024-10-08_16-40-15.png)
+
 Посмотреть готовую работу можно на gp-pages по этой [ссылке](https://georgemikheev.github.io/traineeship-test-task_momentum/).
 ___
 ## Update V-1.1:
@@ -39,85 +41,8 @@ npm run dev
 ```
 ___
 
-## Описание кода и классов:
+## Стек технологий:
 
-### utils
-
-findElement(elementName: string): HTMLElement - функция принимает класс или id HTML элемента и возвращает этот элемент;
-toggleClassList(elements: HTMLElement[], newClassName: string, oldClassName: string) - функция принимает массив элементов и названия классов. Проходит циклом по всем элементам и меняет их старый класс на новый. 
-
-### index.js 
-Входной файл куда импортируются все скрипты и стили необоходимые для работы проекта.
-
-### main.js 
-Главный файл. В нем создаются переменные и описывается логика работы всех классов.
-
-### Блок погоды
-
-#### Класс WeatherAPI
-Данный класс необоходим для получения данных о погоде через API.
-##### Имеет такие поля и медоды:
-- key: string - принимает значения ключа api из process.env.WTHR_API_KEY;
-- getWeaterData(lat: string, lon: string): object - медот, который принимает координаты и возвращает объект с данными о погоде.
-
-#### Класс WeatherBlock
-Данный класс выводит данные о погоде на страницу. Наследует класс WeatherAPI.
-##### Имеет такие поля и медоты:
-- city: HTMLElement - отображает название города; 
-- temperature: HTMLElement - отображает текущую температуру;
-- description: HTMLElement - отображает описание погоды;
-- icon: HTMLElement - отображает иконку погоды;
-- error: HTMLElement - отображает ошибку в случае неудачного запроса к серверу.
-- getGeolocationData(): void - получает данные о текущей геолокации и передает их в запрос Api. В случае неудачи передает в запрос координаты города Краснодар.
-- getWeaterData(lat: string, lon: string): void - принимает данные геолокации и выводит на экран данные погоды. В случае неудачи выводит данные об ошибке.
-
-### Блок времени и даты
-
-#### Класс DatetimeBlock
-Данный класс получает и отображает текущее время и дату. Наследует класс SliderBlock.
-##### Имеет такие поля и методы:
-- time: HTMLElement - отображает текущее время;
-- date: HTMLElement - отображает текущую дату;
-- monthNamesGenitive: string[] - массив с названиями месяцев в родительном падиже;
-- transformationTimeFormat(unitTime: number): string - медот принимает единицу времени, преобразовывает ее в нужный формат и возвращает строку;
-- createCurrentDatetime(): void - медот получает данные о дате и времени и выводит их на страницу.
-
-### Блок слайдер изображений на фоне
-
-#### Класс SliderBlock
-Данный класс выводит на страницу картинки в зависимости от текущего времени суток.
-##### Имеет такие поля и методы:
-- slider: HTMLElement - блок с картинкой;
-- setImage(hours): void - медот принимает текущей час и подставляет нужную картинку в slider.
-
-### Блок задач
-
-#### Класс task
-Класс задачи
-##### Имеет такие поля и методы:
-- _id: number - id задачи;
-- isCompleted: boolean - задача выполнена или не выполнена;
-- content: string - текст задачи
-
-#### Класс TaskBlock
-Класс виджета со списком задач.
-##### Имеет такие поля и методы:
-- taskBlock: HTMLElement - виджет, основной блок;
-- collapseButton: HTMLElement - кнопка сворачивания виджета;
-- form: HTMLElement - форма добавления новой задачи;
-- formInput: HTMLElement - инпут формы;
-- formButton: HTMLElement - кнопка формы;
-- taskList: HTMLElement - список задач;
-- replacement: HTMLElement - сообщение о том, что задач в списке нет;
-- deleteCompleted: HTMLElement - кнопка удаления выполненных задач;
-- template: HTMLElement - темплейт пункта списка задач;
-- clouse(): void - закрывает виджет;
-- open(): void - открываеь виджет;
-- checkTasks(): void - проверяет наличие задач в списке;
-- save(): void - сохраняет задачи в локальное хранилище браузера;
-- createTask(task): void - создает задачи;
-- addTask(): void - добавляет новые задачи;
-- setTask(): void - выводит задачи на страницу;
-- deleteTask(taskID: number): void - удаляет выбранную задачу;
-- toggleTaskCompleted(taskID: number): void - меняет свойство isCompleted на противоположное у выбранной задачи;
-- deleteCompletedTasks(): void - удаляет все выполненные задачи.
+<p align="center">
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg" width="36" height="36" alt="JavaScript" /></a><a href="https://code.visualstudio.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/visualstudiocode.svg" width="36" height="36" alt="VS Code" /></a><a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" width="36" height="36" alt="HTML5" /></a><a href="https://www.w3.org/TR/CSS/#css" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/css3-colored.svg" width="36" height="36" alt="CSS3" /></a><a href="https://webpack.js.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/webpack-colored.svg" width="36" height="36" alt="Webpack" /></a><a href="https://babeljs.io/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/babel-colored.svg" width="36" height="36" alt="Babel" /></a>
+</p>

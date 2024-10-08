@@ -23,7 +23,7 @@ class TaskBlock {
 		this.deleteCompleted = findElement(`.${deleteButton}`);
 		this.template = findElement(`#${template}`);
 
-		this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+		this.tasks = [];
 
 		this.taskBlock.addEventListener("dblclick", () => this.open());
 		this.form.addEventListener("submit", (evt) => {
@@ -36,14 +36,14 @@ class TaskBlock {
 		);
 	}
 
-	clouse() {
+	close() {
 		toggleClassList(
 			[this.collapseButton, this.form, this.deleteCompleted],
-			"clouse",
+			"close",
 			"open"
 		);
 
-		toggleClassList([this.taskBlock], "clouse-state", "open-state");
+		toggleClassList([this.taskBlock], "close-state", "open-state");
 
 		toggleClassList(
 			[this.collapseButton, this.form, this.deleteCompleted],
@@ -52,11 +52,11 @@ class TaskBlock {
 		);
 
 		this.taskBlock.addEventListener("dblclick", () => this.open());
-		this.collapseButton.removeEventListener("click", () => this.clouse());
+		this.collapseButton.removeEventListener("click", () => this.close());
 	}
 
 	open() {
-		toggleClassList([this.taskBlock], "open-state", "clouse-state");
+		toggleClassList([this.taskBlock], "open-state", "close-state");
 		toggleClassList(
 			[this.collapseButton, this.form, this.deleteCompleted],
 			"active",
@@ -66,10 +66,10 @@ class TaskBlock {
 		toggleClassList(
 			[this.collapseButton, this.form, this.deleteCompleted],
 			"open",
-			"clouse"
+			"close"
 		);
 
-		this.collapseButton.addEventListener("click", () => this.clouse());
+		this.collapseButton.addEventListener("click", () => this.close());
 		this.collapseButton.removeEventListener("dbclick", () => this.open());
 	}
 
@@ -112,7 +112,7 @@ class TaskBlock {
 
 	addTask() {
 		if (this.formInput.value) {
-			const task = new Task(this.tasks.length, this.formInput.value);
+			const task = new Task(this.tasks.length, false, this.formInput.value);
 
 			this.tasks.push(task);
 			this.createTask(task);
@@ -122,7 +122,15 @@ class TaskBlock {
 	}
 
 	setTask() {
-		this.tasks.forEach((task) => this.createTask(task));
+		JSON.parse(localStorage.getItem("tasks")).forEach((taskData) => {
+			const task = new Task(
+				taskData._id,
+				taskData.isCompleted,
+				taskData.content
+			);
+			this.createTask(task);
+			this.tasks.push(task);
+		});
 	}
 
 	deleteTask(taskID) {
@@ -133,7 +141,7 @@ class TaskBlock {
 	toggleTaskCompleted(taskID) {
 		const task = this.tasks.find((task) => task._id === taskID);
 		if (!task) return;
-		task.isCompleted ? (task.isCompleted = false) : (task.isCompleted = true);
+		task.toggleCompleted();
 		this.save();
 	}
 

@@ -1,10 +1,8 @@
 import { findElement } from "../../utils/utils";
-import WeatherAPI from "../Api/WeatherAPI";
 
-class WeatherBlock extends WeatherAPI {
-	constructor(key, city, temperature, description, icon, error) {
-		super(key);
-
+class WeatherBlock {
+	constructor(weatherAPI, city, temperature, description, icon, error) {
+		this.weatherAPI = weatherAPI;
 		this.city = findElement(`.${city}`);
 		this.temperature = findElement(`.${temperature}`);
 		this.description = findElement(`.${description}`);
@@ -25,15 +23,15 @@ class WeatherBlock extends WeatherAPI {
 					JSON.stringify(geolocationData)
 				);
 				const localData = JSON.parse(localStorage.getItem("geolocationData"));
-				this.setWeatheData(localData.lat, localData.lon);
+				this.setWeatherData(localData.lat, localData.lon);
 			},
-			() => this.setWeatheData("45.0328", "38.9769")
+			() => this.setWeatherData("45.0328", "38.9769")
 		);
 	}
 
-	async setWeatheData(lat, lon) {
+	async setWeatherData(lat, lon) {
 		try {
-			const weatherData = await this.getWeaterData(lat, lon);
+			const weatherData = await this.weatherAPI.getWeaterData(lat, lon);
 
 			this.city.textContent = weatherData.data[0].city_name;
 			this.temperature.textContent = `${Math.round(

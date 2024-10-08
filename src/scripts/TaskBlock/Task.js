@@ -1,8 +1,12 @@
 class Task {
-	constructor(id, content) {
+	constructor(id, isCompleted, content) {
 		this._id = id;
-		this.isCompleted = false;
+		this.isCompleted = isCompleted;
 		this.content = content;
+	}
+
+	toggleCompleted() {
+		this.isCompleted = !this.isCompleted;
 	}
 }
 

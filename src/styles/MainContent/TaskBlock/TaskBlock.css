@@ -8,7 +8,7 @@
 	display: flex;
 }
 
-.clouse-button {
+.close-button {
 	align-self: flex-end;
 	margin-inline-end: 5px;
 }
@@ -71,7 +71,7 @@
 	border-right: 2px solid var(--widgets-text-color);
 }
 
-.clouse-state {
+.close-state {
 	width: 250px;
 	height: 189px;
 	cursor: pointer;
@@ -94,7 +94,7 @@
 	font-size: 12px;
 }
 
-.clouse-state:hover > .tooltip {
+.close-state:hover > .tooltip {
 	display: block;
 }
 
@@ -172,7 +172,7 @@
 	box-shadow: 0 0 15px var(--widgets-text-color) inset;
 }
 
-.clouse {
+.close {
 	animation: task-block-clousing 1s forwards;
 }
 
